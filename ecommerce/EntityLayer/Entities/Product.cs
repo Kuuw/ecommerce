@@ -5,6 +5,10 @@ namespace EntityLayer.Entities
     public class Product
     {
         public int Id { get; set; }
+        [Required(ErrorMessage = "Boş bırakılamaz.")]
+        [Display(Name = "Ad")]
+        [StringLength(50, ErrorMessage = "Maksimum 50 karakter olmalıdır.")]
+        public string Name { get; set; }
 
         [Required(ErrorMessage = "Boş bırakılamaz.")]
         [Display(Name = "Açıklama")]

@@ -1,15 +1,22 @@
-﻿@model List<EntityLayer.Entities.Category>
+﻿@model List<EntityLayer.Entities.Product>
 @{
     ViewBag.Title = "Index";
-    ViewBag.Breadcrump = "Kategoriler";
+    ViewBag.Breadcrump = "Ürünler";
 }
-<a class="btn btn-primary" href="/AdminCategory/Create">Kategori Ekle</a>
+
+<a class="btn btn-primary" href="/AdminProduct/Create">Ürün Ekle</a>
 <br />
 <br />
 <table class="table table-bordered" id="table">
     <tr>
         <th>Ad</th>
         <th>Açıklama</th>
+        <th>Fiyat</th>
+        <th>Stok</th>
+        <th>Popüler</th>
+        <th>Onay</th>
+        <th>Resim</th>
+        <th>Kategori</th>
         <th>Güncelle</th>
         <th>Sil</th>
     </tr>
@@ -18,11 +25,24 @@
         <tr>
             <td>@item.Name</td>
             <td>@item.Description</td>
-            <td><a class="btn btn-primary" href="/AdminCategory/Update/@item.Id">Güncelle</a></td>
+            <td>@item.Price</td>
+            <td>@item.Stock</td>
+            <td> @if (item.Popular == true)
+            {<input type="checkbox" checked disabled />}
+            else
+            {<input type="checkbox" disabled />} </td>
+            <td> @if (item.isApproved == true)
+            {<input type="checkbox" checked disabled />}
+            else
+            {<input type="checkbox" disabled />} </td>
+            <td><img src="~/Content/Image/@item.Image" width="80" height="80" /></td>
+            <td>@item.Category</td>
+            <td><a class="btn btn-primary" href="/AdminProduct/Update/@item.Id">Güncelle</a></td>
             <td><a class="btn btn-danger btnSil" data-id="@item.Id">Sil</a></td>
         </tr>
     }
 </table>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -52,11 +72,11 @@
                 if (willDelete) {
                     $.ajax({
                         type: "GET",
-                        url: "/AdminCategory/Delete/" + id,
+                        url: "/AdminProduct/Delete/" + id,
                         success: function () {
-                            btn.closest("tr").remove();  
-                            swal("Kategori silindi.", {
-                                icon: "success",
+                            btn.closest("tr").remove();
+                            swal("Ürün silindi.", {
+                                icon: "success",s
                             });
                         },
                         error: function () {
