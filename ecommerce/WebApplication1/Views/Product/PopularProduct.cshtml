@@ -1,0 +1,56 @@
+﻿<div class="recommended_items">
+    <!--recommended_items-->
+    <h2 class="title text-center">Popüler Ürünler</h2>
+
+    <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="item active">
+                @foreach (var item in ViewBag.popular)
+                {
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <a href="/Product/Details/@item.Id">
+                                        <img src="~/Content/Image/@item.Image" style="object-fit:cover;" width="200" height="200" alt="" />
+                                    </a>
+                                    <h2>@item.Price</h2>
+                                    <p>@item.Name</p>
+                                    <a href="/Product/Details/@item.Id" class="btn btn-default add-to-cart">Ürün Detay</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+
+
+            </div>
+            <div class="item">
+                @foreach (var item in ViewBag.popular)
+                {
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <a href="/Product/Details/@item.Id">
+                                        <img src="~/Content/Image/@item.Image" style="object-fit:cover;" width="200" height="200" alt="" />
+                                    </a>
+                                    <h2>@item.Price</h2>
+                                    <p>@item.Name</p>
+                                    <a href="/Product/Details/@item.Id" class="btn btn-default add-to-cart">Ürün Detay</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+        <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+            <i class="fa fa-angle-left"></i>
+        </a>
+        <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+            <i class="fa fa-angle-right"></i>
+        </a>
+    </div>
+</div><!--/recommended_items-->
