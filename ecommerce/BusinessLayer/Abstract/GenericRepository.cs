@@ -41,7 +41,6 @@ namespace BusinessLayer.Abstract
 
         public void Update(T p)
         {
-            db.Entry<T>(p).State = EntityState.Modified;
             db.SaveChanges();
         }
     }

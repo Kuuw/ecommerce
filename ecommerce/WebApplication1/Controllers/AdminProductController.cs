@@ -23,13 +23,16 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            List<SelectListItem> category = (from i in db.Categories.ToList()
+            
+            List<SelectListItem> categories = (from i in db.Categories.ToList()
                                              select new SelectListItem
                                              {
                                                  Text = i.Name,
                                                  Value = i.Id.ToString()
                                              }).ToList();
-            ViewBag.Category = category;
+
+            ViewBag.Categories = categories;
+
             return View();
         }
 
@@ -38,24 +41,28 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Product p, HttpPostedFileBase file)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                List<SelectListItem> category = (from i in db.Categories.ToList()
-                                                 select new SelectListItem
-                                                 {
-                                                     Text = i.Name,
-                                                     Value = i.Id.ToString()
-                                                 }).ToList();
-                ViewBag.Category = category;
-                string path = Path.Combine("~/Content/Image/", file.FileName);
-                file.SaveAs(Server.MapPath(path));
-                p.Image = file.FileName.ToString();
-
-                productRepository.Insert(p);
-                return RedirectToAction("Index");
+                ModelState.AddModelError("", "Bir hata oluştu.");
+                return View();
             }
-            ModelState.AddModelError("", "Bir hata oluştu.");
-            return View();
+            
+            List<SelectListItem> categories = (from i in db.Categories.ToList()
+                                               select new SelectListItem
+                                               {
+                                                   Text = i.Name,
+                                                   Value = i.Id.ToString()
+                                               }).ToList();
+
+            ViewBag.Categories = categories;
+
+
+            string path = Path.Combine("~/Content/Image/", file.FileName);
+            file.SaveAs(Server.MapPath(path));
+            p.Image = file.FileName.ToString();
+
+            productRepository.Insert(p);
+            return RedirectToAction("Index");
         }
 
         public ActionResult Delete(int id)
@@ -65,9 +72,18 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Index");
         }
 
+        [ValidateAntiForgeryToken]
         [HttpGet]
         public ActionResult Update(int id)
         {
+            List<SelectListItem> categories = (from i in db.Categories.ToList()
+                                               select new SelectListItem
+                                               {
+                                                   Text = i.Name,
+                                                   Value = i.Id.ToString()
+                                               }).ToList();
+
+            ViewBag.Categories = categories;
             var objectToUpdate = productRepository.GetById(id);
             return View(objectToUpdate);
         }
@@ -97,9 +113,12 @@ namespace WebApplication1.Controllers
             updatedObject.Popular = p.Popular;
             updatedObject.Category = p.Category;
             updatedObject.CategoryId = p.CategoryId;
-            updatedObject.Image = file.FileName.ToString();
-            string path = Path.Combine("~/Content/Image/", file.FileName);
-            file.SaveAs(Server.MapPath(path));
+            if (file != null)
+            {
+                updatedObject.Image = file.FileName.ToString();
+                string path = Path.Combine("~/Content/Image/", file.FileName);
+                file.SaveAs(Server.MapPath(path));
+            }
 
             productRepository.Update(updatedObject);
             return RedirectToAction("Index");

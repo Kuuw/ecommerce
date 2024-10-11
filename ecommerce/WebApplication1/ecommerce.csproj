@@ -102,7 +102,9 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Image\iphone.png" />
+    <Content Include="Content\Image\buds2pro.jpg" />
+    <Content Include="Content\Image\macbookpro.png" />
+    <Content Include="Content\Image\mxmaster3s.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\sweetalert\bootstrap-sweetalert.png" />
     <Content Include="Content\sweetalert\docs.css" />
@@ -681,6 +683,7 @@
     <Content Include="Views\Sweet\Alert.cshtml" />
     <Content Include="Views\AdminProduct\Index.cshtml" />
     <Content Include="Views\AdminProduct\Create.cshtml" />
+    <Content Include="Views\AdminProduct\Update.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

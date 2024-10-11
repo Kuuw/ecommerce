@@ -3,6 +3,16 @@
     ViewBag.Title = "Index";
     ViewBag.Breadcrump = "Ürünler";
 }
+<style>
+    .big-checkbox {
+        /* Double-sized Checkboxes */
+        -ms-transform: scale(2); /* IE */
+        -moz-transform: scale(2); /* FF */
+        -webkit-transform: scale(2); /* Safari and Chrome */
+        -o-transform: scale(2); /* Opera */
+        padding: 10px;
+    }
+</style>
 
 <a class="btn btn-primary" href="/AdminProduct/Create">Ürün Ekle</a>
 <br />
@@ -27,16 +37,16 @@
             <td>@item.Description</td>
             <td>@item.Price</td>
             <td>@item.Stock</td>
-            <td> 
+            <td align="center"> 
             @if (item.Popular == true)
-            {<input type="checkbox" checked disabled />}
+            {<input type="checkbox" class="big-checkbox" checked onclick="return false;" onkeydown="return false;" />}
             else
-            {<input type="checkbox" disabled />} </td>
-            <td> 
+            {<input type="checkbox" onclick="return false;" onkeydown="return false;" />} </td>
+            <td align="center"> 
             @if (item.isApproved == true)
-            {<input type="checkbox" checked disabled />}
+            {<input type="checkbox" class="big-checkbox" checked onclick="return false;" onkeydown="return false;" />}
             else
-            {<input type="checkbox" disabled />} </td>
+            {<input type="checkbox" onclick="return false;" onkeydown="return false;" />} </td>
             <td><img src="~/Content/Image/@item.Image" width="80" height="80" /></td>
             <td>@item.Category.Name</td>
             <td><a class="btn btn-primary" href="/AdminProduct/Update/@item.Id">Güncelle</a></td>
