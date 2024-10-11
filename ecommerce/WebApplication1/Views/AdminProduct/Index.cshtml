@@ -1,4 +1,6 @@
-﻿@model List<EntityLayer.Entities.Product>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<EntityLayer.Entities.Product>
 @{
     ViewBag.Title = "Index";
     ViewBag.Breadcrump = "Ürünler";
@@ -54,6 +56,8 @@
         </tr>
     }
 </table>
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }), PagedListRenderOptions.Classic)
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

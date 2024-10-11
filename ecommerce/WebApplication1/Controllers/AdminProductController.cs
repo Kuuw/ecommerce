@@ -8,6 +8,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Xml.Linq;
+using PagedList.Mvc;
+using PagedList;
 
 namespace WebApplication1.Controllers
 {
@@ -15,9 +17,9 @@ namespace WebApplication1.Controllers
     {
         ProductRepository productRepository = new ProductRepository();
         DataContext db = new DataContext();
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
-            return View(productRepository.List());
+            return View(productRepository.List().ToPagedList(page, 3));
         }
 
         [HttpGet]
