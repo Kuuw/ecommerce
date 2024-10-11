@@ -27,16 +27,18 @@
             <td>@item.Description</td>
             <td>@item.Price</td>
             <td>@item.Stock</td>
-            <td> @if (item.Popular == true)
+            <td> 
+            @if (item.Popular == true)
             {<input type="checkbox" checked disabled />}
             else
             {<input type="checkbox" disabled />} </td>
-            <td> @if (item.isApproved == true)
+            <td> 
+            @if (item.isApproved == true)
             {<input type="checkbox" checked disabled />}
             else
             {<input type="checkbox" disabled />} </td>
             <td><img src="~/Content/Image/@item.Image" width="80" height="80" /></td>
-            <td>@item.Category</td>
+            <td>@item.Category.Name</td>
             <td><a class="btn btn-primary" href="/AdminProduct/Update/@item.Id">Güncelle</a></td>
             <td><a class="btn btn-danger btnSil" data-id="@item.Id">Sil</a></td>
         </tr>

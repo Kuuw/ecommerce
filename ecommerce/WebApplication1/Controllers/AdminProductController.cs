@@ -1,16 +1,20 @@
 ﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Context;
 using EntityLayer.Entities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml.Linq;
 
 namespace WebApplication1.Controllers
 {
     public class AdminProductController : Controller
     {
         ProductRepository productRepository = new ProductRepository();
+        DataContext db = new DataContext();
         public ActionResult Index()
         {
             return View(productRepository.List());
@@ -19,17 +23,35 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            List<SelectListItem> category = (from i in db.Categories.ToList()
+                                             select new SelectListItem
+                                             {
+                                                 Text = i.Name,
+                                                 Value = i.Id.ToString()
+                                             }).ToList();
+            ViewBag.Category = category;
             return View();
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Product p)
+        public ActionResult Create(Product p, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
-                productRepository.Insert(p);
+                List<SelectListItem> category = (from i in db.Categories.ToList()
+                                                 select new SelectListItem
+                                                 {
+                                                     Text = i.Name,
+                                                     Value = i.Id.ToString()
+                                                 }).ToList();
+                ViewBag.Category = category;
+                string path = Path.Combine("~/Content/Image/", file.FileName);
+                file.SaveAs(Server.MapPath(path));
+                p.Image = file.FileName.ToString();
 
+                productRepository.Insert(p);
                 return RedirectToAction("Index");
             }
             ModelState.AddModelError("", "Bir hata oluştu.");
@@ -52,13 +74,20 @@ namespace WebApplication1.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Update(Product p)
+        public ActionResult Update(Product p, HttpPostedFileBase file)
         {
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("", "Bir hata oluştu.");
                 return View();
             }
+            List<SelectListItem> category = (from i in db.Categories.ToList()
+                                             select new SelectListItem{
+                                                 Text = i.Name,
+                                                 Value = i.Id.ToString()
+                                             }).ToList();
+            ViewBag.Category = category;
+
             var updatedObject = productRepository.GetById(p.Id);
             updatedObject.Name = p.Name;
             updatedObject.Description = p.Description;
@@ -67,7 +96,10 @@ namespace WebApplication1.Controllers
             updatedObject.isApproved = p.isApproved;
             updatedObject.Popular = p.Popular;
             updatedObject.Category = p.Category;
-            updatedObject.CatergoryId = p.CatergoryId;
+            updatedObject.CategoryId = p.CategoryId;
+            updatedObject.Image = file.FileName.ToString();
+            string path = Path.Combine("~/Content/Image/", file.FileName);
+            file.SaveAs(Server.MapPath(path));
 
             productRepository.Update(updatedObject);
             return RedirectToAction("Index");

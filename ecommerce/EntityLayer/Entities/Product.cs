@@ -43,7 +43,7 @@ namespace EntityLayer.Entities
 
         [Required(ErrorMessage = "Boş bırakılamaz.")]
         [Display(Name = "Kategori")]
-        public int CatergoryId { get; set; }
+        public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
 
     }
