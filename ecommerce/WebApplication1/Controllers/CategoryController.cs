@@ -15,9 +15,10 @@ namespace WebApplication1.Controllers
             return PartialView(categoryRepository.List());
         }
 
-        public PartialViewResult Details()
+        public ActionResult Details(int id)
         {
-            return PartialView(categoryRepository.List());
+            var category = categoryRepository.CategoryDetails(id);
+            return View(category);
         }
     }
 }
