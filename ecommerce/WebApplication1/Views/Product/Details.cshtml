@@ -1,7 +1,7 @@
 ﻿@model EntityLayer.Entities.Product
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -39,7 +39,7 @@
                         <!--product-details-->
                         <div class="col-sm-5">
                             <div class="view-product">
-                                <img src="~/Content/Image/@Model.Image" style="width:300px; height:240px; margin-top:20px" alt="@Model.Name" />
+                                <img src="~/Content/Image/@Model.Image" style="width:300px; height:300px; margin-top:20px; object-fit:cover;" alt="@Model.Name" />
                                 
                             </div>
                            
@@ -72,6 +72,29 @@
                         </div>
                     </div><!--/product-details-->
 
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#commentModal">Yorum Yap</button>
+
+                    <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="model-content">
+                                <form method="post" action="/Product/Comment">
+                                    <div class="modal-header">
+                                        <h5>Yorum yazınız.</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <textarea class="form-control" name="content" placeholder="Yorum yazınız..." />
+                                        <input type="hidden" name="ProductId" value="@Model.Id" />
+                                        <input type="hidden" name="UserId" value="@Session["userid"]" />
+                                        <input type="hidden" name="Date" value="@DateTime.Now" />
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                                        <button type="submit" class="btn btn-primary">Gönder</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                    
 
             @Html.Action("PopularProduct","Product")

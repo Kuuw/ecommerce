@@ -17,5 +17,11 @@ namespace WebApplication1.Controllers
             ViewBag.popular = popularProduct;
             return PartialView(popularProduct);
         }
+
+        public ActionResult Details(int id)
+        {
+            var product = productRepository.GetById(id);
+            return View(product);
+        }
     }
 }
