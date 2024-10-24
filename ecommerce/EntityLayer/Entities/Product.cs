@@ -24,10 +24,6 @@ namespace EntityLayer.Entities
         public int Stock { get; set; }
 
         [Required(ErrorMessage = "Boş bırakılamaz.")]
-        [Display(Name = "Popüler")]
-        public bool Popular { get; set; }
-
-        [Required(ErrorMessage = "Boş bırakılamaz.")]
         [Display(Name = "Onaylı")]
         public bool isApproved { get; set; }
 
@@ -35,11 +31,9 @@ namespace EntityLayer.Entities
         [Display(Name = "Görsel")]
         public string Image { get; set; }
 
-
         [Required(ErrorMessage = "Boş bırakılamaz.")]
         [Display(Name = "Adet")]
         public int Quantity { get; set; }
-
 
         [Required(ErrorMessage = "Boş bırakılamaz.")]
         [Display(Name = "Kategori")]

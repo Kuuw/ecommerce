@@ -11,11 +11,11 @@ namespace WebApplication1.Controllers
     public class ProductController : Controller
     {
         ProductRepository productRepository = new ProductRepository();
-        public PartialViewResult PopularProduct()
+        public PartialViewResult FeaturedProduct()
         {
-            List<Product> popularProduct = productRepository.GetPopularProduct();
-            ViewBag.popular = popularProduct;
-            return PartialView(popularProduct);
+            List<Product> featuredProduct = productRepository.GetFeaturedProduct();
+            ViewBag.featured = featuredProduct;
+            return PartialView(featuredProduct);
         }
 
         public ActionResult Details(int id)

@@ -50,11 +50,11 @@ namespace WebApplication1.Controllers
                 return RedirectToActionPermanent("Login", "Account");
             }
             ViewBag.error = "Bu email veya kullanıcı adını kullanan bir hesap halihazırda mevcut.";
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
-        public ActionResult Logout(User data)
+        public ActionResult LogOut(User data)
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");

@@ -659,6 +659,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Roles\AdminRoleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -790,7 +791,7 @@
     <Content Include="Views\Category\CategoryList.cshtml" />
     <Content Include="Views\Category\Details.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
-    <Content Include="Views\Product\PopularProduct.cshtml" />
+    <Content Include="Views\Product\FeaturedProduct.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

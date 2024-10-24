@@ -33,13 +33,6 @@ namespace EntityLayer.Entities
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "Boş bırakılamaz.")]
-        [Display(Name = "Şifre Tekrar")]
-        [StringLength(50)]
-        [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Şifreler aynı değil.")]
-        public string Repassword { get; set; }
-
         public string Role { get; set; }
     }
 }

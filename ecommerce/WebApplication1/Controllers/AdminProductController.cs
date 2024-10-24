@@ -108,7 +108,6 @@ namespace WebApplication1.Controllers
             updatedObject.Stock = p.Stock;
             updatedObject.Price = p.Price;
             updatedObject.isApproved = p.isApproved;
-            updatedObject.Popular = p.Popular;
             updatedObject.Category = p.Category;
             updatedObject.CategoryId = p.CategoryId;
             if (file != null)

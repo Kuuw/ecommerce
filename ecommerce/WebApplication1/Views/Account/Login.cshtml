@@ -72,23 +72,23 @@
                     <div class="col-md-8 clearfix">
                         <div class="shop-menu clearfix pull-right">
                             <ul class="nav navbar-nav">
-                                @*@if (User.Identity.IsAuthenticated)
-                                    {*@
+                                @if (User.Identity.IsAuthenticated)
+                                {
 
-                                <li><a href=""><i class="fa fa-user"></i> @*@Session["Ad"] @Session["Soyad"]*@</a></li>
+                                <li><a href=""><i class="fa fa-user"></i> @Session["Ad"] @Session["Soyad"]</a></li>
 
 
                                 <li><a href="/Account/LogOut"><i class="fa fa-lock"></i> Çıkış Yap</a></li>
-                                @*}
+                                }
 
-                                    else
-                                    {*@
+                                else
+                                {
                                 <li><a href="/Account/Login"><i class="fa fa-lock"></i> Giriş Yap</a></li>
                                 }
-                                @*@if (User.IsInRole("Admin"))
-                                    {*@
+                                @if (User.IsInRole("Admin"))
+                                {
                                 <li><a href="/Admin/Index"><i class="fa fa-lock"></i> Admin Paneli</a></li>
-                                @*}*@
+                                }
                                 <li><a href="/Home/Index"> Anasayfa</a></li>
 
 
@@ -137,7 +137,7 @@
                     <div class="signup-form">
                         <!--sign up form-->
                         <h2>Yeni hesap oluştur.</h2>
-                        <form action="/Account/Register" method="post">
+                        <form action="/Account/Register" method="post" class="validatedForm">
                             <input type="text" placeholder="İsim" name="Name" />
                             @Html.ValidationMessageFor(x => x.Name, "", new { @style = "color:red" })
                             <input type="text" placeholder="Soyisim" name="Surname" />
@@ -146,10 +146,9 @@
                             @Html.ValidationMessageFor(x => x.Email, "", new { @style = "color:red" })
                             <input type="text" placeholder="Kullanıcı Adı" name="Username" />
                             @Html.ValidationMessageFor(x => x.Username, "", new { @style = "color:red" })
-                            <input type="password" placeholder="Parola" name="Password" />
+                            <input type="password" placeholder="Parola" name="Password" id="password" />
                             @Html.ValidationMessageFor(x => x.Password, "", new { @style = "color:red" })
-                            <input type="password" placeholder="Parola Tekrar" name="Repassword" />
-                            @Html.ValidationMessageFor(x => x.Repassword, "", new { @style = "color:red" })
+                            <input type="password" placeholder="Parola Tekrar" name="Repassword" id="confirmPassword"/>
                             <button type="submit" class="btn btn-default">Kayıt Ol</button>
                         </form>
                     </div><!--/sign up form-->
@@ -158,6 +157,19 @@
         </div>
     </section><!--/form-->
 
+    <script>
+        jQuery('.validatedForm').validate({
+            rules: {
+                password: {
+                    minlength: 5
+                },
+                confirmPassword: {
+                    minlength: 5,
+                    equalTo: "#password"
+                }
+            }
+        });
+    </script>
     <script src="~/eshop/js/jquery.js"></script>
     <script src="~/eshop/js/price-range.js"></script>
     <script src="~/eshop/js/jquery.scrollUp.min.js"></script>
