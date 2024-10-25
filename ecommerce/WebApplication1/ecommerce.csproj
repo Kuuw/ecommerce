@@ -650,6 +650,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminCategoryController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AdminFeaturedController.cs" />
     <Compile Include="Controllers\AdminProductController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -793,6 +794,7 @@
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Product\FeaturedProduct.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\AdminFeatured\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

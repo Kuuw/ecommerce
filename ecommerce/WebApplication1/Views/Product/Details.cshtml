@@ -27,7 +27,7 @@
 </head><!--/head-->
 
 <body>
-  
+
 
     <section>
         <div class="container">
@@ -40,26 +40,26 @@
                         <div class="col-sm-5">
                             <div class="view-product">
                                 <img src="~/Content/Image/@Model.Image" style="width:300px; height:300px; margin-top:20px; object-fit:cover;" alt="@Model.Name" />
-                                
+
                             </div>
-                           
+
 
                         </div>
                         <div class="col-sm-7">
                             <div class="product-information">
-                               
+
                                 <h2>Ürün Adı: @Model.Name</h2>
-                               
-                               
+
+
                                 <span>
                                     <span>@Model.Price TL</span>
-                                 
-                                  
-                                    
-                                    
-                                    <a  class="btn btn-fefault cart" style="margin-top:15px" href="/Cart/AddCart/@Model.Id">
+
+
+
+
+                                    <a class="btn btn-fefault cart" style="margin-top:15px" href="/Cart/AddCart/@Model.Id">
                                         <i class="fa fa-shopping-cart"></i>
-                                       Sepete Ekle
+                                        Sepete Ekle
                                     </a>
                                 </span>
                                 <p><b>Kategori:</b> @Model.Category.Name</p>
@@ -75,16 +75,19 @@
 
                     <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
-                            <div class="model-content">
+                            <div class="modal-content">
                                 <form method="post" action="/Product/Comment">
                                     <div class="modal-header">
-                                        <h5>Yorum yazınız.</h5>
+                                        <h5 class="modal-title" id="commentModalLabel">Yorum yazınız.</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
                                     <div class="modal-body">
-                                        <textarea class="form-control" name="content" placeholder="Yorum yazınız..." />
+                                        <textarea class="form-control" name="content" placeholder="Yorum yazınız..." rows="4"></textarea>
                                         <input type="hidden" name="ProductId" value="@Model.Id" />
                                         <input type="hidden" name="UserId" value="@Session["userid"]" />
-                                        <input type="hidden" name="Date" value="@DateTime.Now" />
+                                        <input type="hidden" name="CreatedDate" value="@DateTime.Now" />
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
@@ -94,9 +97,26 @@
                             </div>
                         </div>
                     </div>
-                   
+                    <br />
+                    <div class='row'>
+                        <div class="col-md-4 col-12">
+                            @foreach (var item in ViewBag.comment)
+                            {
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title" style="color:coral;">
+                                            @item.User.Name
+                                        </h4>
+                                        <p class="card-text">@item.Content</p>
+                                        <br />
+                                    </div>
+                                </div>
+                                <br />
+                            }
+                        </div>
+                    </div>
 
-            @Html.Action("FeaturedProduct","Product")
+                    @Html.Action("FeaturedProduct", "Product")
 
                 </div>
             </div>
@@ -105,12 +125,12 @@
 
 
 
-
-
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="~/eshop/js/jquery.js"></script>
     <script src="~/eshop/js/price-range.js"></script>
     <script src="~/eshop/js/jquery.scrollUp.min.js"></script>
-    <script src="~/eshop/js/bootstrap.min.js"></script>
     <script src="~/eshop/js/jquery.prettyPhoto.js"></script>
     <script src="~/eshop/js/main.js"></script>
 </body>

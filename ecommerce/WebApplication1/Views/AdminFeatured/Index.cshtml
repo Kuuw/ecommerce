@@ -3,7 +3,7 @@
 @model IPagedList<EntityLayer.Entities.Product>
 @{
     ViewBag.Title = "Index";
-    ViewBag.Breadcrump = "Ürünler";
+    ViewBag.Breadcrump = "Öne Çıkan Ürünler";
 }
 <style>
     .big-checkbox {
@@ -16,7 +16,6 @@
     }
 </style>
 
-<a class="btn btn-primary" href="/AdminProduct/Create">Ürün Ekle</a>
 <br />
 <br />
 <table class="table table-bordered" id="table">
@@ -28,9 +27,7 @@
         <th>Onay</th>
         <th>Resim</th>
         <th>Kategori</th>
-        <th>Güncelle</th>
-        <th>Öne Çıkan Ürünlere Ekle</th>
-        <th>Sil</th>
+        <th>Önce Çıkanlardan Sil</th>
     </tr>
     @foreach (var item in Model)
     {
@@ -47,9 +44,7 @@
             </td>
             <td><img src="~/Content/Image/@item.Image" width="80" height="80" /></td>
             <td>@item.Category.Name</td>
-            <td><a class="btn btn-primary" href="/AdminProduct/Update/@item.Id">Güncelle</a></td>
-            <td><a class="btn btn-primary btnFeatured" data-id="@item.Id">Öne Çıkan Ürünlere Ekle</a></td>
-            <td><a class="btn btn-danger btnDelete" data-id="@item.Id">Sil</a></td>
+            <td><a class="btn btn-danger btnSil" data-id="@item.Id">Sil</a></td>
         </tr>
     }
 </table>
@@ -62,7 +57,7 @@
 
 <script>
     $(function () {
-        $('#table').on("click", ".btnDelete", function () {
+        $('#table').on("click", ".btnSil", function () {
             var btn = $(this);
             var id = btn.data("id");
 
@@ -85,50 +80,11 @@
                 if (willDelete) {
                     $.ajax({
                         type: "GET",
-                        url: "/AdminProduct/Delete/" + id,
+                        url: "/AdminFeatured/Delete/" + id,
                         success: function () {
                             btn.closest("tr").remove();
                             swal("Ürün silindi.", {
                                 icon: "success",s
-                            });
-                        },
-                        error: function () {
-                            swal("Bir hata oluştu, tekrar deneyin.", {
-                                icon: "error",
-                            });
-                        }
-                    });
-                }
-            });
-        });
-
-        $('#table').on("click", ".btnFeatured", function () {
-            var btn = $(this);
-            var id = btn.data("id");
-
-            swal({
-                title: "Eklemek istediğinize emin misiniz?",
-                text: "Bu işlem geri alınamaz.",
-                icon: "warning",
-                buttons: {
-                    cancel: "İptal",
-                    confirm: {
-                        text: "Onayla",
-                        value: true,
-                        visible: true,
-                        className: "",
-                        closeModal: true
-                    }
-                },
-                dangerMode: true,
-            }).then((willFeature) => {
-                if (willFeature) {
-                    $.ajax({
-                        type: "GET",
-                        url: "/AdminFeatured/Create/" + id,
-                        success: function () {
-                            swal("Ürün öne çıkanlara eklendi.", {
-                                icon: "success", s
                             });
                         },
                         error: function () {

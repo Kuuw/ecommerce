@@ -33,20 +33,20 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="contactinfo">
-                            <ul class="nav nav-pills">
-                                <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-                                <li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+                            <ul class="nav">
+                                <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <div class="social-icons pull-right">
-                            <ul class="nav navbar-nav">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <div class="social-icons float-right">
+                            <ul class="nav">
+                                <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-dribbble"></i></a></li>
+                                <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-google-plus"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -58,51 +58,41 @@
             <!--header-middle-->
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4 clearfix">
-                        <div class="logo pull-left">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <div class="logo">
                             <a href="/Home/Index"><img src="~/eshop/images/home/logo.png" alt="" /></a>
                         </div>
-
                     </div>
-                    <div class="col-md-8 clearfix">
-                        <div class="shop-menu clearfix pull-right">
-                            <ul class="nav navbar-nav">
+                    <div class="col-md-8 d-flex justify-content-end">
+                        <div class="shop-menu d-flex">
+                            <ul class="nav">
                                 @if (User.Identity.IsAuthenticated)
                                 {
-
-                                    <li><a href=""><i class="fa fa-user"></i> @Session["Ad"] @Session["Soyad"]</a></li>
-
-
-                                    <li><a href="/Account/LogOut"><i class="fa fa-lock"></i> Çıkış Yap</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-user"></i> @Session["Ad"] @Session["Soyad"]</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/Account/LogOut"><i class="fa fa-lock"></i> Çıkış Yap</a></li>
                                 }
-
                                 else
                                 {
-                                    <li><a href="/Account/Login"><i class="fa fa-lock"></i> Giriş Yap</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/Account/Login"><i class="fa fa-lock"></i> Giriş Yap</a></li>
                                 }
                                 @if (User.IsInRole("Admin"))
                                 {
-                                    <li><a href="/Admin/Index"><i class="fa fa-lock"></i> Admin Paneli</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/Admin/Index"><i class="fa fa-lock"></i> Admin Paneli</a></li>
                                 }
-                                <li><a href="/Home/Index"> Anasayfa</a></li>
-
-
-                                <li><a href="/Cart/Index"><img src="~/Content/Image/sepet.png" width="30" height="30" /><label style="color:red">@*@{Html.RenderAction("TotalCount", "Cart");}*@</label></a></li>
-                                <li><a href="/Sales/Index"><i class="fa fa-dollar"></i> Satışlarım</a></li>
-
-
-
-
-
-
+                                <li class="nav-item"><a class="nav-link" href="/Home/Index">Anasayfa</a></li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Cart/Index">
+                                        <img src="~/Content/Image/sepet.png" width="30" height="30" />
+                                        <label style="color:red">@*@{Html.RenderAction("TotalCount", "Cart");}*@</label>
+                                    </a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="/Sales/Index"><i class="fa fa-dollar"></i> Satışlarım</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div><!--/header-middle-->
-
-
     </header><!--/header-->
 
     <div class="container">
