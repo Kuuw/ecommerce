@@ -78,9 +78,13 @@ namespace WebApplication1.Controllers
         {
             var objectToDelete = productRepository.GetById(id);
             productRepository.Delete(objectToDelete);
+
+            var productStock = db.ProductStocks.FirstOrDefault(x => x.Id == id);
+            db.ProductStocks.Remove(productStock);
+            db.SaveChanges();
+
             return RedirectToAction("Index");
         }
-
 
         [HttpGet]
         public ActionResult Update(int id)
