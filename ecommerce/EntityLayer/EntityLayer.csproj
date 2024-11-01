@@ -59,6 +59,7 @@
     <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\FeaturedProducts.cs" />
     <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\ProductStock.cs" />
     <Compile Include="Entities\Sales.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

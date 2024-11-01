@@ -38,15 +38,9 @@
                 </div>
                 <br />
                 <div class="form-group">
-                    <label>Stok</label>
-                    <input type="text" class="form-control" name="Stock" />
-                    @Html.ValidationMessageFor(x => x.Stock, "", new { @style = "color:red" })
-                </div>
-                <br />
-                <div class="form-group">
                     <label>Onay</label>
-                    @Html.EditorFor(x => x.isApproved)
-                    @Html.ValidationMessageFor(x => x.isApproved, "", new { @style = "color:red" })
+                    @Html.EditorFor(x => x.IsApproved)
+                    @Html.ValidationMessageFor(x => x.IsApproved, "", new { @style = "color:red" })
                 </div>
                 <br />
                 <div class="form-group">

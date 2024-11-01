@@ -19,7 +19,7 @@ namespace WebApplication1.Controllers
         DataContext db = new DataContext();
         public ActionResult Index(int page = 1)
         {
-            return View(productRepository.List().ToPagedList(page, 3));
+            return View(productRepository.AdminList().ToPagedList(page, 3));
         }
 
         [HttpGet]
@@ -62,6 +62,13 @@ namespace WebApplication1.Controllers
 
             // Insert the product into the database
             productRepository.Insert(p);
+            ProductStock productStock = new ProductStock();
+
+            // Add Stock
+            productStock.Id = p.Id;
+            productStock.Stock = 0;
+            db.ProductStocks.Add(productStock);
+            db.SaveChanges();
 
             // Redirect to Index after successful insertion
             return RedirectToAction("Index");
@@ -105,9 +112,8 @@ namespace WebApplication1.Controllers
             var updatedObject = productRepository.GetById(p.Id);
             updatedObject.Name = p.Name;
             updatedObject.Description = p.Description;
-            updatedObject.Stock = p.Stock;
             updatedObject.Price = p.Price;
-            updatedObject.isApproved = p.isApproved;
+            updatedObject.IsApproved = p.IsApproved;
             updatedObject.Category = p.Category;
             updatedObject.CategoryId = p.CategoryId;
             if (file != null)

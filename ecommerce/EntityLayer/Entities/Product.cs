@@ -20,20 +20,12 @@ namespace EntityLayer.Entities
         public decimal Price { get; set; }
 
         [Required(ErrorMessage = "Boş bırakılamaz.")]
-        [Display(Name = "Stok")]
-        public int Stock { get; set; }
-
-        [Required(ErrorMessage = "Boş bırakılamaz.")]
         [Display(Name = "Onaylı")]
-        public bool isApproved { get; set; }
+        public bool IsApproved { get; set; }
 
         [Required(ErrorMessage = "Boş bırakılamaz.")]
         [Display(Name = "Görsel")]
         public string Image { get; set; }
-
-        [Required(ErrorMessage = "Boş bırakılamaz.")]
-        [Display(Name = "Adet")]
-        public int Quantity { get; set; }
 
         [Required(ErrorMessage = "Boş bırakılamaz.")]
         [Display(Name = "Kategori")]

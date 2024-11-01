@@ -11,5 +11,15 @@ namespace BusinessLayer.Concrete
 {
     public class ProductRepository : GenericRepository<Product>
     {
+        DataContext db = new DataContext();
+        public new List<Product> List()
+        { 
+            return db.Products.Where(x=> x.IsApproved == true).ToList();
+        }
+
+        public List<Product> AdminList()
+        {
+            return db.Products.ToList();
+        }
     }
 }

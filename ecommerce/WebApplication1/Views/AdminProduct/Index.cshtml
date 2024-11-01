@@ -24,7 +24,6 @@
         <th>Ad</th>
         <th>Açıklama</th>
         <th>Fiyat</th>
-        <th>Stok</th>
         <th>Onay</th>
         <th>Resim</th>
         <th>Kategori</th>
@@ -38,9 +37,8 @@
             <td>@item.Name</td>
             <td>@item.Description</td>
             <td>@item.Price</td>
-            <td>@item.Stock</td>
             <td align="center">
-                @if (item.isApproved == true)
+                @if (item.IsApproved == true)
                 {<input type="checkbox" class="big-checkbox" checked onclick="return false;" onkeydown="return false;" />}
                 else
                 {<input type="checkbox" onclick="return false;" onkeydown="return false;" />}

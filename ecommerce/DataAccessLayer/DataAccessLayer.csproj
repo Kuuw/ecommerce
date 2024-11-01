@@ -57,6 +57,14 @@
     <Compile Include="Migrations\202410242147360_Products.Designer.cs">
       <DependentUpon>202410242147360_Products.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202411010722060_Update-StockTable.cs" />
+    <Compile Include="Migrations\202411010722060_Update-StockTable.Designer.cs">
+      <DependentUpon>202411010722060_Update-StockTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202411010917582_Update-Products.cs" />
+    <Compile Include="Migrations\202411010917582_Update-Products.Designer.cs">
+      <DependentUpon>202411010917582_Update-Products.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -73,6 +81,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202410242147360_Products.resx">
       <DependentUpon>202410242147360_Products.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411010722060_Update-StockTable.resx">
+      <DependentUpon>202411010722060_Update-StockTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411010917582_Update-Products.resx">
+      <DependentUpon>202411010917582_Update-Products.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
